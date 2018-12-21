@@ -1,4 +1,4 @@
-mysql -u bam_user -pBe@stM0de beast_mode_db --execute="-- MySQL dump 10.13  Distrib 8.0.12, for osx10.13 (x86_64)
+mysql -u bmq_user -pBe@stM0de beast_mode_db --execute="-- MySQL dump 10.13  Distrib 8.0.12, for osx10.13 (x86_64)
 --
 -- Host: localhost    Database: beast_mode_db
 -- ------------------------------------------------------
@@ -199,4 +199,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-21  9:33:19"
+-- Dump completed on 2018-12-21 11:06:39"
