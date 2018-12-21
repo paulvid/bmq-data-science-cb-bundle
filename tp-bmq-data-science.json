@@ -38,28 +38,31 @@
         "securityGroupIds": [],
         "securityRules": [
           {
+            "subnet": "68.238.247.254/32",
+            "ports": "1-65535",
+            "protocol": "tcp"
+          },
+          {
+            "subnet": "0.0.0.0/0",
+            "ports": "443",
+            "protocol": "tcp"
+          },
+          {
             "subnet": "0.0.0.0/0",
             "ports": "22",
             "protocol": "tcp"
           },
           {
             "subnet": "0.0.0.0/0",
-            "ports": "8443",
-            "protocol": "tcp"
-          },
-          {
-            "subnet": "0.0.0.0/0",
             "ports": "9443",
-            "protocol": "tcp"
-          },
-          {
-            "subnet": "64.134.226.41/32",
-            "ports": "1-65535",
             "protocol": "tcp"
           }
         ]
       },
-      "recipeNames": [],
+      "recipeNames": [
+        "pras-bmq-data-science",
+        "poci-bmq-data-science"
+      ],
       "recoveryMode": "MANUAL"
     }
   ],
@@ -81,21 +84,9 @@
     "rdsConfigNames": [],
     "ambari": {
       "blueprintName": "bmq-data-science",
-      "gateway": {
-        "topologies": [
-          {
-            "topologyName": "dp-proxy",
-            "exposedServices": [
-              "AMBARI"
-            ]
-          }
-        ],
-        "gatewayType": "INDIVIDUAL",
-        "ssoType": "NONE"
-      },
       "enableSecurity": false,
       "userName": "admin",
-      "password": "CP=wZ?sq:c73^Vn`+T",
+      "password": "Be@stM0de",
       "validateRepositories": false,
       "ambariStackDetails": {
         "stack": "HDP",
