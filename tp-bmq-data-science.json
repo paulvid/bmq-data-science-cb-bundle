@@ -1,11 +1,11 @@
 {
   "general": {
     "name": "",
-    "credentialName": "pvidal-local-cloudbreak"
+    "credentialName": "pvi-credential"
   },
   "placement": {
-    "availabilityZone": "us-east-1a",
-    "region": "us-east-1"
+    "availabilityZone": "us-west-1a",
+    "region": "us-west-1"
   },
   "parameters": {},
   "inputs": {},
@@ -27,24 +27,16 @@
         "volumeSize": 100,
         "rootVolumeSize": 50,
         "parameters": {
-          "encrypted": false,
-          "platformType": "AWS",
-          "type": "NONE"
+          "encrypted": false
         },
         "volumeType": "standard",
         "instanceType": "m5.2xlarge"
       },
       "securityGroup": {
-        "securityGroupIds": [],
         "securityRules": [
           {
             "subnet": "68.238.247.254/32",
             "ports": "1-65535",
-            "protocol": "tcp"
-          },
-          {
-            "subnet": "0.0.0.0/0",
-            "ports": "443",
             "protocol": "tcp"
           },
           {
@@ -56,38 +48,42 @@
             "subnet": "0.0.0.0/0",
             "ports": "9443",
             "protocol": "tcp"
+          },
+          {
+            "subnet": "0.0.0.0/0",
+            "ports": "443",
+            "protocol": "tcp"
           }
         ]
       },
       "recipeNames": [
-        "pras-bmq-data-science",
-        "poci-bmq-data-science"
+        "poci-15-bmq-zeppelin-setup",
+        "pras-14-bmq-rdbms-setup"
       ],
       "recoveryMode": "MANUAL"
     }
   ],
   "stackAuthentication": {
-    "publicKeyId": "_field"
+    "publicKeyId": "field"
   },
   "network": {
     "parameters": {
-      "subnetId": "subnet-dff56386",
-      "vpcId": "vpc-d85076bd"
+      "subnetId": "subnet-0e943a261b9e14625",
+      "vpcId": "vpc-0076a88d006244ec8"
     }
   },
   "imageSettings": {
     "imageCatalog": "cloudbreak-default",
-    "imageId": "2c5cd6ea-7d5b-4004-73f2-27ad2e1ce7a9"
+    "imageId": "69db7e20-f3ac-4d45-6f95-39204e70ddcf"
   },
   "cluster": {
     "emailNeeded": false,
     "rdsConfigNames": [],
     "ambari": {
-      "blueprintName": "bmq-data-science",
+      "blueprintName": "bp-bmq-ephemeral-data-science",
       "enableSecurity": false,
       "userName": "admin",
       "password": "Be@stM0de",
-      "validateRepositories": false,
       "ambariStackDetails": {
         "stack": "HDP",
         "version": "3.1",
@@ -95,13 +91,13 @@
         "enableGplRepo": false,
         "verify": false,
         "repositoryVersion": "3.1.0.0-78",
-        "versionDefinitionFileUrl": "http://public-repo-1.hortonworks.com/HDP/centos7/3.x/updates/3.1.0.0/HDP-3.1.0.0-78.xml",
+        "versionDefinitionFileUrl": "http://s3.amazonaws.com/dev.hortonworks.com/HDP/centos7/3.x/BUILDS/3.1.0.0-78/HDP-3.1.0.0-78.xml",
         "mpacks": []
       },
       "ambariRepoDetailsJson": {
         "version": "2.7.3.0",
-        "baseUrl": "http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.7.3.0",
-        "gpgKeyUrl": "http://public-repo-1.hortonworks.com/ambari/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins"
+        "baseUrl": "http://s3.amazonaws.com/dev.hortonworks.com/ambari/centos7/2.x/BUILDS/2.7.3.0-139",
+        "gpgKeyUrl": "http://s3.amazonaws.com/dev.hortonworks.com/ambari/centos7/2.x/BUILDS/2.7.3.0-139/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins"
       }
     }
   }

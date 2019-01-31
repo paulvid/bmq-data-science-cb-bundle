@@ -4,7 +4,7 @@
 # 0. Initializing environment #
 ###############################
 
-export PATH=$PATH:/Users/pvidal/Documents/Playground/cb-cli/
+#export PATH=$PATH:/Users/pvidal/Documents/Playground/cb-cli/
 
 ###################################################
 # 1. Dumping current data and adding it to recipe #
@@ -172,19 +172,19 @@ echo "curl -X PUT http://localhost:9995/api/interpreter/setting/restart/jdbc  -H
 # 2. Adding recipe to cloudbreak #
 ##################################
 
-TOKEN=$(curl -k -iX POST -H "accept: application/x-www-form-urlencoded" -d 'credentials={"username":"pvidal@hortonworks.com","password":"HWseftw33#"}' "https://192.168.56.100/identity/oauth/authorize?response_type=token&client_id=cloudbreak_shell&scope.0=openid&source=login&redirect_uri=http://cloudbreak.shell" | grep location | cut -d'=' -f 3 | cut -d'&' -f 1)
+TOKEN=$(curl -k -iX POST -H "accept: application/x-www-form-urlencoded" -d 'credentials={"username":"admin@example.com","password":"admin-password1"}' "https://13.52.49.114/identity/oauth/authorize?response_type=token&client_id=cloudbreak_shell&scope.0=openid&source=login&redirect_uri=http://cloudbreak.shell" | grep location | cut -d'=' -f 3 | cut -d'&' -f 1)
 echo $TOKEN
 
 ENCODED_RECIPE=$(base64 poci-bmq-data-science.sh)
 
 
 curl -X DELETE \
-  https://192.168.56.100/cb/api/v1/recipes/user/poci-bmq-data-science \
+  https://13.52.49.114/cb/api/v1/recipes/user/poci-bmq-data-science \
   -H "Authorization: Bearer $TOKEN" \
   -k
 
 curl -X POST \
-  https://192.168.56.100/cb/api/v1/recipes/user \
+  https://13.52.49.114/cb/api/v1/recipes/user \
   -H "Authorization: Bearer $TOKEN" \
   -H 'Content-Type: application/json' \
   -H 'cache-control: no-cache' \
@@ -199,6 +199,7 @@ curl -X POST \
 ########################
 # 3. Launching cluster #
 ########################
-
-cb cluster create --cli-input-json tp-bmq-data-science.json --name bmq-data-science-$(date +%s)
+cb configure --server https://13.52.49.114 --username admin@example.com --password admin-password1
+cb cluster list
+cb cluster create --cli-input-json tp-bmq-data-science.json --name bmq-data-science
 

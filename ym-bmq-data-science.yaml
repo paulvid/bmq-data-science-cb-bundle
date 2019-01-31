@@ -1,0 +1,21 @@
+desc: Bundle creating a single node HDP 3.1 for Beast Mode Quotient Calculation
+seq:
+- open_port: [-1, 1, 65534, '192.175.27.2/32']  # Hwx VPN
+- open_port: [tcp, 22, 22, '0.0.0.0/0']
+deploywait: 1800
+purge: true
+infra:
+  ambarirepo:
+    version: 2.7.3.0
+    baseUrl: http://public-repo-1.hortonworks.com/ambari/centos7/2.x/updates/2.7.3.0
+    gpgKeyUrl: http://public-repo-1.hortonworks.com/ambari/centos7/RPM-GPG-KEY/RPM-GPG-KEY-Jenkins
+  stackrepo:
+    ver: 3.1.0.0-78
+    url: http://public-repo-1.hortonworks.com/HDP/centos7/3.x/updates/3.1.0.0/HDP-3.1.0.0-78.xml
+blueprint: 
+	name: bp-bmq-data-science.json
+recipe:
+- name: pras-bmq-data-science.sh
+  typ: PRE_AMBARI_START
+- name: poci-bmq-data-science.sh
+  typ: POST_CLUSTER_INSTALL
